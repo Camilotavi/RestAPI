@@ -1,28 +1,33 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.dto.ClienteDTO;
+import com.example.demo.service.ClienteService;
+import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Cliente;
 import com.example.demo.repository.ClienteRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @RestController
 public class ClienteController {
 
-    private final ClienteRepository repository;
+    private final ClienteService service;
 
-    public ClienteController(ClienteRepository repository) {
-        this.repository = repository;
+    public ClienteController(ClienteService service) {
+        this.service = service;
     }
 
-    @PostMapping("/addClient")
+    @PostMapping("/cliente/agregar")
     public void agregarCliente(@RequestBody Cliente cliente) {
-        repository.save(cliente);
-        System.out.println("Exito");
+        service.anadirCliente(cliente);
     }
-    @GetMapping("/hello")
-    public String saludo(){
-        return "Hello World";
+    @GetMapping("/cliente/obtenerTodos")
+    public List<ClienteDTO> obtenerTodosClientes(){
+        return service.obtenerClientes();
+    }
+
+    @PutMapping("/cliente/aumentarPuntos/{id}")
+    public void aumentarPuntosClienteEspecifico(@PathVariable int id){
+        return service.sumarPuntos(id,);
     }
 }

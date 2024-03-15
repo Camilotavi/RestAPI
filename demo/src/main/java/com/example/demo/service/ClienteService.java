@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ClienteDTO;
+import com.example.demo.entity.PeticionModificarPuntos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entity.Cliente;
@@ -33,11 +34,12 @@ public class ClienteService{
         return clientesDto;
     }
 
-    public void sumarPuntos (int id, int puntosAnadir){
-        Optional<Cliente> cliente = repository.findById(id);
+    public void modificarPuntos (PeticionModificarPuntos peticionModificarPuntos){
+        Optional<Cliente> cliente = repository.findById(peticionModificarPuntos.getIdPersona());
         if(cliente.isPresent()){
            Cliente clienteObtenido = cliente.get();
-           clienteObtenido.setPuntos(clienteObtenido.getPuntos() + puntosAnadir);
+           clienteObtenido.setPuntos(clienteObtenido.getPuntos() + peticionModificarPuntos.getCantidadPuntos());
+           repository.save(clienteObtenido);
         }
 
     }

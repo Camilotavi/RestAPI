@@ -28,6 +28,6 @@ public class ClienteController {
 
     @PutMapping("/cliente/aumentarPuntos/{id}")
     public void aumentarPuntosClienteEspecifico(@PathVariable int id){
-        return service.sumarPuntos(id,);
+        service.sumarPuntos(id,5);
     }
 }

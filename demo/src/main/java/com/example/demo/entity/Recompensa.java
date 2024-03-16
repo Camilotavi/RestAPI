@@ -11,7 +11,7 @@ import java.util.List;
 public class Recompensa {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -26,6 +26,6 @@ public class Recompensa {
     @Column
     private int puntosRequeridos;
 
-    @OneToMany(mappedBy = "recompensa")
-    private List<Transaccion> transacciones;
+    public Recompensa() {
+    }
 }

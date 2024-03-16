@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ClienteDTO;
+import com.example.demo.dto.TransaccionDTO;
 import com.example.demo.entity.Cliente;
+import com.example.demo.entity.PeticionRedimirPuntos;
 import com.example.demo.entity.Recompensa;
+import com.example.demo.entity.Transaccion;
 import com.example.demo.service.TransaccionService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TransaccionController {
@@ -16,8 +20,19 @@ public class TransaccionController {
         this.service = service;
     }
 
-    @PostMapping("/transaccion/agregar")
-    public void registrarTransaccion(@RequestBody Cliente cliente, @RequestBody Recompensa recompensa) {
-        service.registrarTransaccion(1,cliente,recompensa);
+    @PostMapping("/transaccion/redimirPuntos")
+    public void redimirPuntos(@RequestBody PeticionRedimirPuntos peticionRedimirPuntos) {
+
+        service.redimirPuntos(peticionRedimirPuntos);
+    }
+
+    @GetMapping("/transaccion/obtenerTodos")
+    public List<Transaccion> obtenerTodosClientes(){
+        return service.obtenerTransacciones();
+    }
+
+    @GetMapping("/transaccion/obtenerTransacciones/{id}")
+    public List<TransaccionDTO> obtenerTransaccionesPorIdCliente(@PathVariable int id){
+        return this.service.obtenerTransaccionesPorIdCliente(id);
     }
 }

@@ -1,8 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.ClienteDTO;
+import com.example.demo.dto.RecompensaDTO;
+import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Recompensa;
 import com.example.demo.repository.RecompensaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RecompensaService {
@@ -15,6 +21,16 @@ public class RecompensaService {
 
     public void agregarRecompensa (Recompensa recompensa){
         repository.save(recompensa);
+    }
+
+    public List<RecompensaDTO> obtenerRecompensas(){
+        List<Recompensa> recompensas = repository.findAll();
+        List<RecompensaDTO> recompensasDto = new ArrayList<RecompensaDTO>();
+        for (Recompensa recompensa:recompensas) {
+            recompensasDto.add(new RecompensaDTO(recompensa));
+        }
+        return recompensasDto;
+
     }
 
 

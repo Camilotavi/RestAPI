@@ -32,9 +32,5 @@ public class ClienteController {
         service.modificarPuntos(peticionModificarPuntos);
     }
 
-    @PutMapping("/cliente/disminuirPuntos")
-    public void disminuirPuntosClienteEspecifico(@RequestBody PeticionModificarPuntos peticionModificarPuntos){
-        service.modificarPuntos(peticionModificarPuntos);
-    }
 
 }

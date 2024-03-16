@@ -7,4 +7,7 @@ public class PeticionModificarPuntos {
 
     private int idPersona;
     private int cantidadPuntos;
+
+    public PeticionModificarPuntos() {
+    }
 }

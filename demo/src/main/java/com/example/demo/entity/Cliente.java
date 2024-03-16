@@ -3,9 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 import java.util.List;
-
 
 @Table
 @Entity
@@ -13,8 +11,7 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @Column
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -23,8 +20,17 @@ public class Cliente {
     @Column
     private int puntos;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Transaccion> transacciones;
+    public Cliente(String nombre, int puntos) {
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
 
+    public Cliente(int id, String nombre, int puntos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
 
+    public Cliente() {
+    }
 }

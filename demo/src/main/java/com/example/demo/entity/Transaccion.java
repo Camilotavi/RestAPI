@@ -9,20 +9,18 @@ import lombok.Data;
 public class Transaccion {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private int idCliente;
 
-    @ManyToOne
-    @JoinColumn(name = "recompensa_id")
-    private Recompensa recompensa;
+    private int idRecompensa;
 
-    public Transaccion(int id, Cliente cliente, Recompensa recompensa) {
-        this.id = id;
-        this.cliente = cliente;
-        this.recompensa = recompensa;
+    public Transaccion(int idCliente, int idRecompensa) {
+        this.idCliente = idCliente;
+        this.idRecompensa = idRecompensa;
+    }
+
+    public Transaccion() {
     }
 }

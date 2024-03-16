@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ClienteDTO;
+import com.example.demo.entity.PeticionModificarPuntos;
 import com.example.demo.service.ClienteService;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Cliente;
@@ -26,8 +27,10 @@ public class ClienteController {
         return service.obtenerClientes();
     }
 
-    @PutMapping("/cliente/aumentarPuntos/{id}")
-    public void aumentarPuntosClienteEspecifico(@PathVariable int id){
-        service.sumarPuntos(id,5);
+    @PutMapping("/cliente/aumentarPuntos")
+    public void aumentarPuntosClienteEspecifico(@RequestBody PeticionModificarPuntos peticionModificarPuntos){
+        service.modificarPuntos(peticionModificarPuntos);
     }
+
+
 }

@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Table
 @Entity
@@ -12,7 +11,7 @@ import lombok.Data;
 public class Recompensa {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -26,4 +25,7 @@ public class Recompensa {
 
     @Column
     private int puntosRequeridos;
+
+    public Recompensa() {
+    }
 }

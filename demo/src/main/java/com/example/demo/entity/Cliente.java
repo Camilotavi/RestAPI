@@ -1,11 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 
 @Table
 @Entity
@@ -13,7 +11,7 @@ import lombok.Data;
 public class Cliente {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -21,4 +19,18 @@ public class Cliente {
 
     @Column
     private int puntos;
+
+    public Cliente(String nombre, int puntos) {
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
+
+    public Cliente(int id, String nombre, int puntos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
+
+    public Cliente() {
+    }
 }

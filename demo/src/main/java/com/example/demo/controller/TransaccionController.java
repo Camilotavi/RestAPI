@@ -21,9 +21,9 @@ public class TransaccionController {
     }
 
     @PostMapping("/transaccion")
-    public void redimirPuntos(@RequestBody PeticionRedimirPuntos peticionRedimirPuntos) {
-
+    public String redimirPuntos(@RequestBody PeticionRedimirPuntos peticionRedimirPuntos) {
         service.redimirPuntos(peticionRedimirPuntos);
+        return "Transaccion guardada";
     }
 
     @GetMapping("/transacciones")

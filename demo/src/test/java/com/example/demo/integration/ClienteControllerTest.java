@@ -1,6 +1,5 @@
 package com.example.demo.integration;
 
-import com.example.demo.dto.ClienteDTO;
 import com.example.demo.entity.Cliente;
 import com.example.demo.entity.PeticionModificarPuntos;
 import org.junit.jupiter.api.Assertions;

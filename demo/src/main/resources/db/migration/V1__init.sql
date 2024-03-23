@@ -14,9 +14,10 @@ CREATE TABLE cliente (
       puntos int default null
 );
 
-CREATE TABLE transaccion (
-  id         INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  id_cliente int NOT NULL,
-  id_recompensa int NOT NULL,
+CREATE TABLE transaccion
+(
+    id         INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_cliente int default null,
+    id_recompensa int default null
 );
 

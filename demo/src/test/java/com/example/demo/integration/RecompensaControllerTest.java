@@ -1,9 +1,6 @@
 package com.example.demo.integration;
 
 import com.example.demo.entity.Recompensa;
-import com.example.demo.entity.Recompensa;
-import com.example.demo.entity.Recompensa;
-import com.example.demo.integration.AbstractTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +8,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
-import java.util.Objects;
 
 public class RecompensaControllerTest extends AbstractTest {
 

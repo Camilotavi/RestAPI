@@ -20,18 +20,18 @@ public class TransaccionController {
         this.service = service;
     }
 
-    @PostMapping("/transaccion/redimirPuntos")
+    @PostMapping("/transaccion")
     public void redimirPuntos(@RequestBody PeticionRedimirPuntos peticionRedimirPuntos) {
 
         service.redimirPuntos(peticionRedimirPuntos);
     }
 
-    @GetMapping("/transaccion/obtenerTodos")
+    @GetMapping("/transacciones")
     public List<Transaccion> obtenerTodosClientes(){
         return service.obtenerTransacciones();
     }
 
-    @GetMapping("/transaccion/obtenerTransacciones/{id}")
+    @GetMapping("/transacciones/cliente/{id}")
     public List<TransaccionDTO> obtenerTransaccionesPorIdCliente(@PathVariable int id){
         return this.service.obtenerTransaccionesPorIdCliente(id);
     }

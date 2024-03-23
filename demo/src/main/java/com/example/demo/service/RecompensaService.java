@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecompensaService {
@@ -30,9 +31,16 @@ public class RecompensaService {
             recompensasDto.add(new RecompensaDTO(recompensa));
         }
         return recompensasDto;
-
     }
 
+    public RecompensaDTO obternerRecompensaPorId(int id){
+        RecompensaDTO recompensaDTO = null;
+        Optional<Recompensa> recompensa = repository.findById(id);
+        if(recompensa.isPresent()){
+            recompensaDTO = new RecompensaDTO(recompensa.get());
+        }
+        return recompensaDTO;
+    }
 
 
 

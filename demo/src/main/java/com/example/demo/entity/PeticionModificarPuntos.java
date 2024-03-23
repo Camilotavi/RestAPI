@@ -10,4 +10,9 @@ public class PeticionModificarPuntos {
 
     public PeticionModificarPuntos() {
     }
+
+    public PeticionModificarPuntos(Cliente cliente, int cantidadPuntos){
+        this.idPersona = cliente.getId();
+        this.cantidadPuntos = cantidadPuntos;
+    }
 }

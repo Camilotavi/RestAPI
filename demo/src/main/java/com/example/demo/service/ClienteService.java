@@ -34,6 +34,15 @@ public class ClienteService{
         return clientesDto;
     }
 
+    public ClienteDTO obtenerClientePorId(int id){
+        Optional<Cliente> cliente = this.repository.findById(id);
+        ClienteDTO clienteDTO = null;
+        if(cliente.isPresent()){
+            clienteDTO = new ClienteDTO(cliente.get());
+        }
+        return clienteDTO;
+
+    }
     public void modificarPuntos (PeticionModificarPuntos peticionModificarPuntos){
         Optional<Cliente> cliente = repository.findById(peticionModificarPuntos.getIdPersona());
         if(cliente.isPresent()){

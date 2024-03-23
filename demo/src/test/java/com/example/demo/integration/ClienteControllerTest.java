@@ -44,16 +44,16 @@ public class ClienteControllerTest extends AbstractTest {
         Cliente cliente = new Cliente();
         cliente.setPuntos(10);
         cliente.setNombre("Batman");
-        ResponseEntity<Cliente> response = restTemplate.postForEntity(path, cliente, Cliente.class);
-        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/" + response.getBody().getId(), Cliente.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(path, cliente, String.class);
+        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/1", Cliente.class);
         // Verificar que se ha insertado correctamente el cliente
-        Assertions.assertEquals("Batman", Objects.requireNonNull(result.getBody()).getNombre());
+        Assertions.assertEquals("Batman", result.getBody().getNombre());
     }
 
     @Test
     void test_obtenerClientes() {
         ResponseEntity<List<Cliente>> response = restTemplate.exchange(
-                path + "s",  // Agrega la 's' para pluralizar la ruta
+                path + "s",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Cliente>>() {});

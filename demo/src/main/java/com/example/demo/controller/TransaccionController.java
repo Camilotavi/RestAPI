@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ClienteDTO;
 import com.example.demo.dto.TransaccionDTO;
-import com.example.demo.entity.Cliente;
 import com.example.demo.entity.PeticionRedimirPuntos;
-import com.example.demo.entity.Recompensa;
 import com.example.demo.entity.Transaccion;
 import com.example.demo.service.TransaccionService;
 import org.springframework.web.bind.annotation.*;

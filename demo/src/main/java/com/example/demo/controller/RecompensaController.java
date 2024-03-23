@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ClienteDTO;
 import com.example.demo.dto.RecompensaDTO;
-import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Recompensa;
 import com.example.demo.service.RecompensaService;
 import org.springframework.web.bind.annotation.*;

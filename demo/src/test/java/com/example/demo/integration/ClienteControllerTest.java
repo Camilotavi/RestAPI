@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public class ClienteControllerTest extends AbstractTest {
 
     String path = "/cliente";
@@ -41,6 +43,10 @@ public class ClienteControllerTest extends AbstractTest {
         ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/2", Cliente.class);
         Assertions.assertEquals("Julian", result.getBody().getNombre());
     }*/
+
+
+
+
     
 
 

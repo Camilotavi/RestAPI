@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 @Table
 @Entity
 @Data
+@AllArgsConstructor
 public class Recompensa {
 
     @Id
@@ -27,5 +29,12 @@ public class Recompensa {
     private int puntosRequeridos;
 
     public Recompensa() {
+    }
+
+    public Recompensa(String categoria, String nombre, String descripcion, int puntosRequeridos) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.puntosRequeridos = puntosRequeridos;
     }
 }

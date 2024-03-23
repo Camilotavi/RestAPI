@@ -22,12 +22,12 @@ public class RecompensaController {
         this.service = service;
     }
 
-    @PostMapping("/recompensa/agregar")
+    @PostMapping("/recompensa")
     public void agregarRecompensa(@RequestBody Recompensa recompensa) {
         service.agregarRecompensa(recompensa);
     }
 
-    @GetMapping("/recompensa/obtenerTodos")
+    @GetMapping("/recompensas")
     public List<RecompensaDTO> obtenerRecompensas(){
         return service.obtenerRecompensas();
     }

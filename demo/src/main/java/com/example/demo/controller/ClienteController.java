@@ -18,16 +18,16 @@ public class ClienteController {
         this.service = service;
     }
 
-    @PostMapping("/cliente/agregar")
+    @PostMapping("/cliente")
     public void agregarCliente(@RequestBody Cliente cliente) {
         service.anadirCliente(cliente);
     }
-    @GetMapping("/cliente/obtenerTodos")
+    @GetMapping("/clientes")
     public List<ClienteDTO> obtenerTodosClientes(){
         return service.obtenerClientes();
     }
 
-    @PutMapping("/cliente/aumentarPuntos")
+    @PutMapping("/cliente/puntos")
     public void aumentarPuntosClienteEspecifico(@RequestBody PeticionModificarPuntos peticionModificarPuntos){
         service.modificarPuntos(peticionModificarPuntos);
     }

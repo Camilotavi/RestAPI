@@ -1,5 +1,6 @@
 package com.example.demo.integration;
 
+import com.example.demo.dto.ClienteDTO;
 import com.example.demo.entity.Cliente;
 import com.example.demo.entity.PeticionModificarPuntos;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +24,7 @@ public class ClienteControllerTest extends AbstractTest {
     @Test
     void test_ajustarNombre(){
         Cliente cliente = new Cliente();
-        cliente.setId(1);
+        cliente.setId(2);
         cliente.setNombre("Pepe");
         ResponseEntity<String> response = restTemplate.postForEntity(path, cliente, String.class);
         Assertions.assertEquals("Cliente guardado", response.getBody());
@@ -32,17 +33,20 @@ public class ClienteControllerTest extends AbstractTest {
     @Test
     void test_modificarPuntos() {
         Cliente cliente = new Cliente();
-        cliente.setId(1);
+        cliente.setId(2);
         int puntosAumentar = 50;
         restTemplate.put(path + "/puntos", new PeticionModificarPuntos(cliente,puntosAumentar));
-        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/1", Cliente.class);
+        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/2", Cliente.class);
         Assertions.assertEquals(55, Objects.requireNonNull(result.getBody()).getPuntos());
     }
     @Test
     void test_agregarCliente() {
-        Cliente cliente = new Cliente("Batman",10);
-        ResponseEntity<String> response = restTemplate.postForEntity(path,cliente,String.class);
-        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/3", Cliente.class);
+        Cliente cliente = new Cliente();
+        cliente.setPuntos(10);
+        cliente.setNombre("Batman");
+        ResponseEntity<Cliente> response = restTemplate.postForEntity(path, cliente, Cliente.class);
+        ResponseEntity<Cliente> result = restTemplate.getForEntity(path + "/" + response.getBody().getId(), Cliente.class);
+        // Verificar que se ha insertado correctamente el cliente
         Assertions.assertEquals("Batman", Objects.requireNonNull(result.getBody()).getNombre());
     }
 
@@ -53,7 +57,6 @@ public class ClienteControllerTest extends AbstractTest {
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Cliente>>() {});
-
         List<Cliente> clientes = response.getBody();
         Assertions.assertNotNull(clientes);
         Assertions.assertFalse(clientes.isEmpty());

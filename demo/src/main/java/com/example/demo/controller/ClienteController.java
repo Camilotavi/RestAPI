@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ClienteDTO;
-import com.example.demo.dto.TransaccionDTO;
 import com.example.demo.entity.PeticionModificarPuntos;
 import com.example.demo.service.ClienteService;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.entity.Cliente;
-import com.example.demo.repository.ClienteRepository;
 
 import java.util.List;
 

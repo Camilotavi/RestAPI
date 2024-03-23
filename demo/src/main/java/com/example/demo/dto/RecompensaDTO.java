@@ -1,8 +1,6 @@
 package com.example.demo.dto;
 
-import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Recompensa;
-import jakarta.persistence.Column;
 import lombok.Getter;
 
 @Getter

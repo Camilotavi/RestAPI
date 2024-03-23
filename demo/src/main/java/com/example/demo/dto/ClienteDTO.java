@@ -2,8 +2,12 @@ package com.example.demo.dto;
 
 import com.example.demo.entity.Cliente;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class ClienteDTO {
 
     private String nombre;
@@ -14,5 +18,8 @@ public class ClienteDTO {
         this.puntos = cliente.getPuntos();
     }
 
-
+    public ClienteDTO(String nombre, int puntos) {
+        this.nombre = nombre;
+        this.puntos = puntos;
+    }
 }

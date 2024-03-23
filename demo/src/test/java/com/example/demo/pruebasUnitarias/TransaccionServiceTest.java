@@ -35,26 +35,26 @@ public class TransaccionServiceTest {
     RecompensaRepository recompensaRepository;
 
     @Mock
-    PeticionRedimirPuntos peticion=new PeticionRedimirPuntos();
+    PeticionRedimirPuntos peticion = new PeticionRedimirPuntos();
 
     @Mock
-    Recompensa recompensa=new Recompensa();
+    Recompensa recompensa = new Recompensa();
 
 
     @Test
-    void DadoPeticion_CuandoregistrarTransaccion_EntoncesGuardeTransaccion(){
+    void DadoPeticion_CuandoregistrarTransaccion_EntoncesGuardeTransaccion() {
         service.registrarTransaccion(peticion);
 
-        Transaccion transaccion=new Transaccion(peticion.getClienteId(), peticion.getRecompensaId());
+        Transaccion transaccion = new Transaccion(peticion.getClienteId(), peticion.getRecompensaId());
 
         verify(repository).save(transaccion);
     }
 
     @Test
-    void DadoListaTransacciones_CuandoobtenerTransacciones_EntoncesDevuelvaTransacciones(){
+    void DadoListaTransacciones_CuandoobtenerTransacciones_EntoncesDevuelvaTransacciones() {
         List<Transaccion> listaTransacciones = new ArrayList<>();
-        listaTransacciones.add(new Transaccion(23,23));
-        listaTransacciones.add(new Transaccion(24,24));
+        listaTransacciones.add(new Transaccion(23, 23));
+        listaTransacciones.add(new Transaccion(24, 24));
 
         when(repository.findAll()).thenReturn(listaTransacciones);
 
@@ -64,11 +64,11 @@ public class TransaccionServiceTest {
     }
 
     @Test
-    void DadoPeticionParaRedimirPuntos_CuandoredimirPuntosSuficientes_EntoncesClienteActualizaRecompensaYPuntos(){
+    void DadoPeticionParaRedimirPuntos_CuandoredimirPuntosSuficientes_EntoncesClienteActualizaRecompensaYPuntos() {
         when(peticion.getClienteId()).thenReturn(0);
         when(peticion.getRecompensaId()).thenReturn(23);
 
-        Cliente cliente = new Cliente("Andres",23);
+        Cliente cliente = new Cliente("Andres", 23);
         when(recompensa.getPuntosRequeridos()).thenReturn(23);
 
         when(clienteRepository.findById(0)).thenReturn(Optional.of(cliente));
@@ -81,11 +81,11 @@ public class TransaccionServiceTest {
     }
 
     @Test
-    void DadoPeticionParaRedimirPuntos_CuandoredimirPuntosInsuficientes_EntoncesClienteActualizaRecompensaYPuntos(){
+    void DadoPeticionParaRedimirPuntos_CuandoredimirPuntosInsuficientes_EntoncesClienteActualizaRecompensaYPuntos() {
         when(peticion.getClienteId()).thenReturn(0);
         when(peticion.getRecompensaId()).thenReturn(23);
 
-        Cliente cliente = new Cliente("Andres",9);
+        Cliente cliente = new Cliente("Andres", 9);
         when(recompensa.getPuntosRequeridos()).thenReturn(10);
 
         when(clienteRepository.findById(0)).thenReturn(Optional.of(cliente));
@@ -111,6 +111,7 @@ public class TransaccionServiceTest {
 
         assertNotNull(transaccionesCliente);
     }
+
     @Test
     public void DadoClienteId_CuandoobtenerTransaccionesPorIdClienteNoExistente_EntoncesDevuelveListaTransacciones() {
         List<Transaccion> transacciones = new ArrayList<>();
@@ -126,7 +127,7 @@ public class TransaccionServiceTest {
     }
 
     @Test
-    public void DadoTransaccion_CuandoconvertirATransaccionDto_EntoncesDevuelveDTO(){
+    public void DadoTransaccion_CuandoconvertirATransaccionDto_EntoncesDevuelveDTO() {
         // Crear una instancia de Transaccion
         Transaccion transaccion = new Transaccion();
         transaccion.setIdRecompensa(0); // Supongamos que la transacción tiene ID de recompensa 1

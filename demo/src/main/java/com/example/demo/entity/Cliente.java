@@ -2,12 +2,12 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
+import lombok.ToString;
 
 @Table
 @Entity
 @Data
+@ToString
 public class Cliente {
 
     @Id

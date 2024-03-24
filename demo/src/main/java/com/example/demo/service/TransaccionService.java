@@ -28,33 +28,33 @@ public class TransaccionService {
         this.clienteRepository = clienteRepository;
     }
 
-    public void registrarTransaccion(PeticionRedimirPuntos peticionRedimirPuntos){
+    public void registrarTransaccion(PeticionRedimirPuntos peticionRedimirPuntos) {
         this.transaccionRepository.save(new Transaccion(peticionRedimirPuntos.getClienteId(), peticionRedimirPuntos.getRecompensaId()));
     }
 
-    public List<Transaccion> obtenerTransacciones(){
+    public List<Transaccion> obtenerTransacciones() {
         return this.transaccionRepository.findAll();
     }
 
-    public void redimirPuntos(PeticionRedimirPuntos peticionRedimirPuntos){
+    public void redimirPuntos(PeticionRedimirPuntos peticionRedimirPuntos) {
         Optional<Cliente> cliente = clienteRepository.findById(peticionRedimirPuntos.getClienteId());
         Optional<Recompensa> recompensa = recompensaRepository.findById(peticionRedimirPuntos.getRecompensaId());
 
         Cliente clienteObtenido = cliente.get();
         Recompensa recompensaObtenida = recompensa.get();
 
-        if(clienteObtenido.getPuntos() >= recompensaObtenida.getPuntosRequeridos()){
+        if (clienteObtenido.getPuntos() >= recompensaObtenida.getPuntosRequeridos()) {
             this.registrarTransaccion(peticionRedimirPuntos);
             clienteObtenido.setPuntos(clienteObtenido.getPuntos() - recompensaObtenida.getPuntosRequeridos());
             clienteRepository.save(clienteObtenido);
         }
     }
 
-    public List<TransaccionDTO> obtenerTransaccionesPorIdCliente(int idCliente){
+    public List<TransaccionDTO> obtenerTransaccionesPorIdCliente(int idCliente) {
         List<Transaccion> transacciones = this.obtenerTransacciones();
         List<TransaccionDTO> transaccionesCliente = new ArrayList<TransaccionDTO>();
-        for (Transaccion transaccion:transacciones) {
-            if (transaccion.getIdCliente() == idCliente){
+        for (Transaccion transaccion : transacciones) {
+            if (transaccion.getIdCliente() == idCliente) {
                 TransaccionDTO transaccionDto = this.convertirATransaccionDto(transaccion);
                 transaccionesCliente.add(transaccionDto);
             }
@@ -62,7 +62,7 @@ public class TransaccionService {
         return transaccionesCliente;
     }
 
-    public TransaccionDTO convertirATransaccionDto(Transaccion transaccion){
+    public TransaccionDTO convertirATransaccionDto(Transaccion transaccion) {
         Optional<Recompensa> recompensa = this.recompensaRepository.findById(transaccion.getIdRecompensa());
         TransaccionDTO transaccionDto = new TransaccionDTO(transaccion.getIdCliente(), recompensa.get());
         return transaccionDto;

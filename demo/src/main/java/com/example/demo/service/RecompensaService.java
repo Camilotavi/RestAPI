@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.ClienteDTO;
 import com.example.demo.dto.RecompensaDTO;
-import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Recompensa;
 import com.example.demo.repository.RecompensaRepository;
 import org.springframework.stereotype.Service;
@@ -20,28 +18,27 @@ public class RecompensaService {
         this.repository = repository;
     }
 
-    public void agregarRecompensa (Recompensa recompensa){
+    public void agregarRecompensa(Recompensa recompensa) {
         repository.save(recompensa);
     }
 
-    public List<RecompensaDTO> obtenerRecompensas(){
+    public List<RecompensaDTO> obtenerRecompensas() {
         List<Recompensa> recompensas = repository.findAll();
         List<RecompensaDTO> recompensasDto = new ArrayList<RecompensaDTO>();
-        for (Recompensa recompensa:recompensas) {
+        for (Recompensa recompensa : recompensas) {
             recompensasDto.add(new RecompensaDTO(recompensa));
         }
         return recompensasDto;
     }
 
-    public RecompensaDTO obternerRecompensaPorId(int id){
+    public RecompensaDTO obternerRecompensaPorId(int id) {
         RecompensaDTO recompensaDTO = null;
         Optional<Recompensa> recompensa = repository.findById(id);
-        if(recompensa.isPresent()){
+        if (recompensa.isPresent()) {
             recompensaDTO = new RecompensaDTO(recompensa.get());
         }
         return recompensaDTO;
     }
-
 
 
 }

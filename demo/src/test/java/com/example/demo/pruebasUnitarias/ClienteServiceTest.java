@@ -30,7 +30,7 @@ public class ClienteServiceTest {
     ClienteRepository repository;
 
     @Mock
-    PeticionModificarPuntos peticion= new PeticionModificarPuntos();
+    PeticionModificarPuntos peticion = new PeticionModificarPuntos();
 
     @Test
     void DadoCliente_CuandoañadirCliente_EntoncesGuardarCliente() {
@@ -44,8 +44,8 @@ public class ClienteServiceTest {
     @Test
     void DadoClientes_CuandoSeUseFindall_EntoncesDevuelveListaClientes() {
         List<Cliente> clientesPrueba = new ArrayList<>();
-        clientesPrueba.add(new Cliente("Andres",21));
-        clientesPrueba.add(new Cliente("Andrea",23));
+        clientesPrueba.add(new Cliente("Andres", 21));
+        clientesPrueba.add(new Cliente("Andrea", 23));
 
         when(repository.findAll()).thenReturn(clientesPrueba);
 
@@ -79,7 +79,7 @@ public class ClienteServiceTest {
     @Test
     void DadoPeticionSumaPuntos_CuandoSeVerifiqueNoCliente_EntoncesNoSeGuardenLosPuntos() {
 
-        Cliente cliente=new Cliente();
+        Cliente cliente = new Cliente();
 
         when(repository.findById(0)).thenReturn(Optional.empty());
 

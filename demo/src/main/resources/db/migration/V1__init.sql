@@ -13,3 +13,11 @@ CREATE TABLE cliente (
       nombre             VARCHAR(100),
       puntos int default null
 );
+
+CREATE TABLE transaccion
+(
+    id         INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_cliente int default null,
+    id_recompensa int default null
+);
+

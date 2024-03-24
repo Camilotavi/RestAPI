@@ -1,7 +1,6 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Recompensa;
-import com.example.demo.entity.Transaccion;
 import lombok.Getter;
 
 @Getter
